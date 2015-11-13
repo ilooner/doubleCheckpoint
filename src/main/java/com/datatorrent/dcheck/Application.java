@@ -23,13 +23,15 @@ public class Application implements StreamingApplication
     // Sample DAG with 2 operators
     // Replace this code with the DAG you want to build
 
+    FSStorageAgent storageAgent = new FSStorageAgent("checkpoints", new Configuration());
+
     RandomNumberGenerator randomGenerator = dag.addOperator("randomGenerator", RandomNumberGenerator.class);
     randomGenerator.setNumTuples(500);
 
     Consumer consumer = dag.addOperator("consumer", new Consumer());
 
-    FSStorageAgent storageAgent = new FSStorageAgent("checkpoints", new Configuration());
     dag.getOperatorMeta("consumer").getAttributes().put(OperatorContext.STORAGE_AGENT, storageAgent);
+    dag.getOperatorMeta("randomGenerator").getAttributes().put(OperatorContext.STORAGE_AGENT, storageAgent);
 
     dag.addStream("randomData", randomGenerator.out, consumer.input);
   }
