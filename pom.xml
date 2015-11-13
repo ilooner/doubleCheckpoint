@@ -8,8 +8,8 @@
   <packaging>jar</packaging>
 
   <!-- change these to the appropriate values -->
-  <name>My Apex Application</name>
-  <description>My Apex Application Description</description>
+  <name>Double Checkpoint</name>
+  <description>Double Checkpoint</description>
 
   <properties>
     <!-- change this if you desire to use a different version of DataTorrent -->
